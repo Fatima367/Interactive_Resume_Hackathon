@@ -27,10 +27,11 @@ button {
   background-color: rgb(7, 61, 97);
   color: white;
   font-weight: bold;
-  padding: 15px;
+  padding: 10px;
   border: none;
-  border-radius: 30px;
+  border-radius: 20px;
 }
-button:hover {
+button:hover{
   cursor: pointer;
+  box-shadow: 0 0 10px rgb(38, 38, 39);
 }

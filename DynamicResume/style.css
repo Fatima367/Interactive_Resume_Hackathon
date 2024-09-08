@@ -1,0 +1,37 @@
+#mainheading {
+  background-color: white;
+  color: rgb(7, 61, 97);
+  text-align: center;
+}
+
+h2 {
+  background-color: rgb(175, 219, 248);
+}
+h2 :hover {
+  box-shadow: 0 0 10px rgb(38, 38, 39);
+}
+img {
+  height: 200px;
+  width: 200px;
+  border: none;
+  border-radius: 200px;
+}
+img:hover {
+  box-shadow: 0 0 10px rgb(38, 38, 39);
+}
+#showskills :hover {
+  cursor: pointer;
+}
+
+button {
+  background-color: rgb(7, 61, 97);
+  color: white;
+  font-weight: bold;
+  padding: 15px;
+  border: none;
+  border-radius: 30px;
+}
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgb(38, 38, 39);
+}

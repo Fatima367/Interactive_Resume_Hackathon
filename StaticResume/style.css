@@ -1,0 +1,25 @@
+h1 {
+  background-color: rgb(175, 219, 248);
+}
+h1 :hover {
+  box-shadow: 0 0 10px rgb(38, 38, 39);
+  border: none;
+  border-radius: 50px;
+}
+img {
+  height: 200px;
+  width: 200px;
+  border: none;
+  border-radius: 200px;
+}
+img:hover {
+  box-shadow: 0 0 10px rgb(38, 38, 39);
+}
+#showskills :hover {
+  cursor: pointer;
+}
+
+button {
+  background-color: rgb(175, 219, 248);
+  font-weight: bold;
+}

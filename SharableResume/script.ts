@@ -52,7 +52,7 @@ form.addEventListener("submit", (event) => {
   newResume.innerHTML = generateResume;
 
  const createUrl = document.createElement('button')
- createUrl.textContent = 'Create URL'
+ createUrl.textContent = ' Share '
  newResume.append(createUrl)
 createUrl.addEventListener('click',()=>{
   `<p> <i>https://${name}resume.vercel.app/</i></p>`;

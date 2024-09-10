@@ -2,12 +2,14 @@
 const form = document.getElementById("resumeform");
 let newResume = document.getElementById("generatedresume");
 form.addEventListener("submit", (event) => {
-  event.preventDefault();
+  event.preventDefault(); 
+
   let formdiv = document.querySelector('.formdiv')
   formdiv.style.display = 'none'
   let mainheading = document.getElementById('mainheading')
   mainheading.style.display = 'none'
   form.style.display='none'
+
   const name = document.getElementById("fullname").value;
   const email = document.getElementById("email").value;
   const contact = document.getElementById("phone").value;
@@ -51,6 +53,6 @@ form.addEventListener("submit", (event) => {
 
   createPdf.addEventListener('click', function () {
     window.print();
-});
+  });
 
 });

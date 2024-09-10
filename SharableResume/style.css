@@ -3,7 +3,15 @@
   color: rgb(7, 61, 97);
   text-align: center;
 }
-
+.formdiv{
+  border: 1px solid gray;
+  border-radius: 20px;
+  padding: 10px;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 5px 5px 10px;
+}
 h2 {
   background-color: rgb(175, 219, 248);
 }
@@ -34,4 +42,13 @@ button {
 button:hover {
   cursor: pointer;
   box-shadow: 0 0 10px rgb(38, 38, 39);
+}
+#generatedresume{
+  border: 1px solid gray;
+  border-radius: 20px;
+  padding: 10px;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 5px 5px 10px;
 }

@@ -22,4 +22,11 @@ img:hover {
 button {
   background-color: rgb(175, 219, 248);
   font-weight: bold;
+  padding: 10px;
+  border: none;
+  border-radius: 30px;
+}
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgb(38, 38, 39);
 }

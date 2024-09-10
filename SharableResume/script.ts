@@ -5,6 +5,12 @@ let newResume = document.getElementById("generatedresume");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
+  let formdiv = document.querySelector('.formdiv')
+  formdiv.style.display = 'none'
+  let mainheading = document.getElementById('mainheading')
+  mainheading.style.display = 'none'
+  form.style.display='none'
+
   const name = (document.getElementById("fullname") as HTMLInputElement).value;
 
   const email = (document.getElementById("email") as HTMLInputElement).value;
@@ -57,5 +63,9 @@ createUrl.addEventListener('click',()=>{
 const createPdf = document.createElement('button')
  createPdf.textContent = 'Download PDF'
  newResume.append(createPdf);
+
+ createPdf.addEventListener('click', function () {
+  window.print();
+});
 
 });

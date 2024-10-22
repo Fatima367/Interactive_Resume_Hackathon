@@ -3,7 +3,7 @@
   color: rgb(7, 61, 97);
   text-align: center;
 }
-.formdiv{
+#formdiv{
   border: 1px solid gray;
   border-radius: 20px;
   padding: 10px;

@@ -4,6 +4,7 @@ const formElement = document.getElementById(
 const resumeContainer = document.getElementById(
   "generatedresume"
 ) as HTMLElement | null;
+const formDiv = document.getElementById("formdiv") as HTMLElement | null;
 
 if (formElement && resumeContainer) {
   resumeContainer.style.display = "none";
@@ -58,6 +59,8 @@ if (formElement && resumeContainer) {
     `;
     resumeContainer.style.display = "block";
     resumeContainer.innerHTML = generatedResume;
+    formDiv.style.display = "none";
+
   });
 } else {
   console.error("Form element or resume container not found.");

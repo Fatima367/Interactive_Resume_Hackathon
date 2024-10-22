@@ -1,30 +1,43 @@
 var showskills = document.getElementById("showskills");
-var skillslist = [
-  "HTML",
-  "CSS",
-  "TypeScript",
-  "JavaScript",
-  "NextJs(Learning)",
-  "Canva",
-  "MsWord",
-];
-showskills === null || showskills === void 0
-  ? void 0
-  : showskills.addEventListener("click", function handleClick(event) {
-      showskills.removeEventListener("click", handleClick);
-      var ul = document.createElement("ul");
-      skillslist.forEach(function (skill) {
+if (showskills) {
+    var skillslist = [
+        "HTML",
+        "CSS",
+        "TypeScript",
+        "JavaScript",
+        "React",
+        "NextJs",
+        "Figma",
+        "Frontend Development",
+        "Canva",
+        "MsWord",
+    ];
+    var ul_1 = document.createElement("ul");
+    skillslist.forEach(function (skill) {
         var li = document.createElement("li");
         li.textContent = skill;
-        ul.appendChild(li);
-        ul.style.display = "block";
-      });
-      showskills.append(ul);
-      var hideBtn = document.createElement("button");
-      hideBtn.textContent = "Hide";
-      showskills.append(hideBtn);
-      hideBtn.addEventListener("click", function () {
-        ul.style.display = "none";
-        hideBtn.style.display = "none";
-      });
+        ul_1.appendChild(li);
     });
+    ul_1.style.display = "none";
+    showskills.appendChild(ul_1);
+    var showBtn_1 = document.createElement("button");
+    showBtn_1.textContent = "Show Skills";
+    showskills.appendChild(showBtn_1);
+    var hideBtn_1 = document.createElement("button");
+    hideBtn_1.textContent = "Hide Skills";
+    hideBtn_1.style.display = "none";
+    showskills.appendChild(hideBtn_1);
+    showBtn_1.addEventListener("click", function () {
+        ul_1.style.display = "block";
+        showBtn_1.style.display = "none";
+        hideBtn_1.style.display = "inline";
+    });
+    hideBtn_1.addEventListener("click", function () {
+        ul_1.style.display = "none";
+        hideBtn_1.style.display = "none";
+        showBtn_1.style.display = "inline";
+    });
+}
+else {
+    console.error("Element with ID 'showskills' not found.");
+}

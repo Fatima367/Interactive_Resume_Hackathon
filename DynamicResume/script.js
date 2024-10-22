@@ -1,18 +1,17 @@
-const formElement = document.getElementById("resumeform") ;
-const resumeContainer = document.getElementById("generatedresume") ;
-
+const formElement = document.getElementById("resumeform");
+const resumeContainer = document.getElementById("generatedresume");
 
 if (formElement && resumeContainer) {
-  resumeContainer.style.display= "none";
+  resumeContainer.style.display = "none";
   formElement.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const name = (document.getElementById("fullname") ).value;
-    const email = (document.getElementById("email") ).value;
-    const contact = (document.getElementById("phone") ).value;
-    const education = (document.getElementById("education") ).value;
-    const workExperience = (document.getElementById("workExperience") ).value;
-    const skills = (document.getElementById("skills") ).value;
+    const name = document.getElementById("fullname").value;
+    const email = document.getElementById("email").value;
+    const contact = document.getElementById("phone").value;
+    const education = document.getElementById("education").value;
+    const workExperience = document.getElementById("workExperience").value;
+    const skills = document.getElementById("skills").value;
 
     const educationList = education
       .split("\n")
@@ -46,7 +45,7 @@ if (formElement && resumeContainer) {
       <h2>Skills</h2>
       <ul>${skillsList}</ul>
     `;
-    resumeContainer.style.display = "block"
+    resumeContainer.style.display = "block";
     resumeContainer.innerHTML = generatedResume;
   });
 } else {

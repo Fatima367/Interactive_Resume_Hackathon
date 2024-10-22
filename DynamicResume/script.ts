@@ -1,18 +1,28 @@
-const formElement = document.getElementById("resumeform") as HTMLFormElement | null;
-const resumeContainer = document.getElementById("generatedresume") as HTMLElement | null;
-
+const formElement = document.getElementById(
+  "resumeform"
+) as HTMLFormElement | null;
+const resumeContainer = document.getElementById(
+  "generatedresume"
+) as HTMLElement | null;
 
 if (formElement && resumeContainer) {
-  resumeContainer.style.display= "none";
+  resumeContainer.style.display = "none";
   formElement.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const name = (document.getElementById("fullname") as HTMLInputElement).value;
+    const name = (document.getElementById("fullname") as HTMLInputElement)
+      .value;
     const email = (document.getElementById("email") as HTMLInputElement).value;
-    const contact = (document.getElementById("phone") as HTMLInputElement).value;
-    const education = (document.getElementById("education") as HTMLTextAreaElement).value;
-    const workExperience = (document.getElementById("workExperience") as HTMLTextAreaElement).value;
-    const skills = (document.getElementById("skills") as HTMLTextAreaElement).value;
+    const contact = (document.getElementById("phone") as HTMLInputElement)
+      .value;
+    const education = (
+      document.getElementById("education") as HTMLTextAreaElement
+    ).value;
+    const workExperience = (
+      document.getElementById("workExperience") as HTMLTextAreaElement
+    ).value;
+    const skills = (document.getElementById("skills") as HTMLTextAreaElement)
+      .value;
 
     const educationList = education
       .split("\n")
@@ -46,7 +56,7 @@ if (formElement && resumeContainer) {
       <h2>Skills</h2>
       <ul>${skillsList}</ul>
     `;
-    resumeContainer.style.display = "block"
+    resumeContainer.style.display = "block";
     resumeContainer.innerHTML = generatedResume;
   });
 } else {

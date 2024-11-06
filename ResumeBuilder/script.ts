@@ -68,6 +68,7 @@ if (formElement && resumeContainer) {
       <h2>Skills</h2>
       <ul>${skillsList}</ul>
     `;
+    
     resumeContainer.style.display = "block";
     resumeContainer.innerHTML = generatedResume;
     formDiv.style.display = "none";

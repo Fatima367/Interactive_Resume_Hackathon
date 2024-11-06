@@ -1,5 +1,9 @@
+body{
+  margin-left: 5%;
+  margin-right: 5%;
+}
 h1 {
-  background-color: rgb(175, 219, 248);
+  background-color: rgb(188, 226, 252);
 }
 h1 :hover {
   box-shadow: 0 0 10px rgb(38, 38, 39);

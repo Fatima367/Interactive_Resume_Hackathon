@@ -1,92 +1,101 @@
-const form = document.getElementById("resumeform") as HTMLFormElement;
+const formElement = document.getElementById("resumeform") as HTMLFormElement | null;
+const resumeContainer = document.getElementById("generatedresume") as HTMLElement | null;
 
-let newResume = document.getElementById("generatedresume");
+function downloadResume() {
+  const resumeElement = document.getElementById("generatedresume");
+  if (!resumeElement) return;
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+  const options = {
+    margin: 0,
+    filename: "Resume.pdf",
+    image: { type: "jpeg", quality: 1 },
+    html2canvas: { scale: 3, useCORS: true },
+    jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+  };
 
-  let formdiv = document.querySelector(".formdiv");
-  formdiv.style.display = "none";
-  let mainheading = document.getElementById("mainheading");
-  mainheading.style.display = "none";
-  form.style.display = "none";
-
-  const name = (document.getElementById("fullname") as HTMLInputElement).value;
-
-  const email = (document.getElementById("email") as HTMLInputElement).value;
-
-  const contact = (document.getElementById("phone") as HTMLInputElement).value;
-
-  const education = (
-    document.getElementById("education") as HTMLTextAreaElement
-  ).value;
-
-  const workExperience = (
-    document.getElementById("workExperience") as HTMLTextAreaElement
-  ).value;
-
-  const skills = (document.getElementById("skills") as HTMLTextAreaElement)
-    .value;
-
-  const generateResume = `
-            <h1>${name}'s Resume</h1>
-           
-            <h2>Personal Information</h2>
-            <p><b>Name:</b> ${name}</p>
-            <p><b>Email:</b> ${email}</p>
-            <p><b>Contact No:</b> ${contact}</p>
-         
-            <h2>Education</h2>
-            <p>${education}</p>
-         
-
-            <h2>Work Experience</h2>
-            <p>${workExperience}</p>
-           
-
-            <h2>Skills</h2>
-            <p>${skills}</p>
-        `;
-
-  const newResume = document.getElementById("generatedresume");
-  newResume.innerHTML = generateResume;
-
-  const createPdf = document.createElement("button");
-  createPdf.textContent = "Download PDF";
-  newResume.append(createPdf);
-
-  createPdf.addEventListener("click", function () {
-    window.print();
+  const buttons = resumeElement.querySelectorAll("button");
+  buttons.forEach((button) => {
+    button.style.display = "none";
   });
 
-  const shareButton = document.createElement("button");
-  shareButton.textContent = "Share";
-  newResume.append(shareButton);
+  resumeElement.style.border = "none";
 
-  const shareLinks = document.createElement("div");
-  shareLinks.style.display = "none";
-  newResume.append(shareLinks);
+  html2pdf()
+    .from(resumeElement)
+    .set(options)
+    .save()
+    
+}
 
-  shareButton.addEventListener("click", function () {
-    const currentUrl = window.location.href;
-    shareLinks.style.display =
-      shareLinks.style.display === "none" ? "block" : "none";
+const formDiv = document.getElementById("formdiv") as HTMLElement | null;
 
-    shareLinks.innerHTML = `<br>Share <a href="${currentUrl}" target="_blank"> Resume Builder</a> to let 
-          others make and download their Resume.`;
+if (formElement && resumeContainer) {
+  resumeContainer.style.display = "none";
+  formElement.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-    let copybtn = document.createElement("button");
-    copybtn.textContent = "Copy Link!";
-    shareLinks.appendChild(copybtn);
-    copybtn.addEventListener("click", () => {
-      navigator.clipboard
-        .writeText(currentUrl)
-        .then(() => {
-          alert(`Link Copied to the clipboard`);
-        })
-        .catch((err) =>
-          console.error("Copy Link by by right click on underlined text!", err)
-        );
+    const name = (document.getElementById("fullname") as HTMLInputElement).value;
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const contact = (document.getElementById("phone") as HTMLInputElement).value;
+    const education = (document.getElementById("education") as HTMLTextAreaElement).value;
+    const workExperience = (document.getElementById("workExperience") as HTMLTextAreaElement).value;
+    const skills = (document.getElementById("skills") as HTMLTextAreaElement).value;
+
+    const educationList = education.split("\n").map((edu) => `<li>${edu}</li>`).join("");
+    const workExperienceList = workExperience.split("\n").map((exp) => `<li>${exp}</li>`).join("");
+    const skillsList = skills.split("\n").map((skill) => `<li>${skill}</li>`).join("");
+
+    const generatedResume = `
+      <h1>${name}'s Resume</h1>
+      <h2>Personal Information</h2>
+      <p><b>Name:</b> ${name}</p>
+      <p><b>Email:</b> ${email}</p>
+      <p><b>Contact No:</b> ${contact}</p>
+      <h2>Education</h2>
+      <ul>${educationList}</ul>
+      <h2>Work Experience</h2>
+      <ul>${workExperienceList}</ul>
+      <h2>Skills</h2>
+      <ul>${skillsList}</ul>
+    `;
+    resumeContainer.style.display = "block";
+    resumeContainer.innerHTML = generatedResume;
+    formDiv.style.display = "none";
+
+    // Create and append "Download PDF" button
+    const createPdf = document.createElement("button");
+    createPdf.textContent = "Download PDF";
+    resumeContainer.append(createPdf);
+    createPdf.addEventListener("click", downloadResume);
+
+    // Create and append "Share" button
+    const shareButton = document.createElement("button");
+    shareButton.textContent = "Share";
+    resumeContainer.append(shareButton);
+
+    // Create and append share links div
+    const shareLinks = document.createElement("div");
+    shareLinks.style.display = "none";
+    resumeContainer.append(shareLinks);
+
+    shareButton.addEventListener("click", function () {
+      const currentUrl = window.location.href;
+      shareLinks.style.display = shareLinks.style.display === "none" ? "block" : "none";
+
+      shareLinks.innerHTML = `<br>Share <a href="${currentUrl}" target="_blank"> Resume Builder</a> to let others make and download their Resume.`;
+
+      const copybtn = document.createElement("button");
+      copybtn.textContent = "Copy Link!";
+      shareLinks.appendChild(copybtn);
+      copybtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(currentUrl)
+          .then(() => {
+            alert(`Link Copied to the clipboard`);
+          })
+          .catch((err) => console.error("Copy Link by right click on underlined text!", err));
+      });
     });
   });
-});
+} else {
+  console.error("Form element or resume container not found.");
+}

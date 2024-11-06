@@ -3,7 +3,7 @@
   color: rgb(7, 61, 97);
   text-align: center;
 }
-.formdiv{
+#formdiv{
   border: 1px solid gray;
   border-radius: 20px;
   padding: 10px;
@@ -11,10 +11,12 @@
   margin-left: auto;
   margin-right: auto;
   box-shadow: 5px 5px 10px;
+  background-color: rgb(248, 251, 253);
+  
 }
-
 h2 {
-  background-color: rgb(175, 219, 248);
+  background-color: rgb(188, 226, 252);
+  color: rgb(1, 32, 52);
 }
 h2 :hover {
   box-shadow: 0 0 10px rgb(38, 38, 39);
@@ -36,11 +38,11 @@ button {
   background-color: rgb(7, 61, 97);
   color: white;
   font-weight: bold;
-  padding: 10px;
+  padding: 15px;
   border: none;
   border-radius: 20px;
 }
-button:hover{
+button:hover {
   cursor: pointer;
   box-shadow: 0 0 10px rgb(38, 38, 39);
 }
@@ -52,4 +54,7 @@ button:hover{
   margin-left: auto;
   margin-right: auto;
   box-shadow: 5px 5px 10px;
+}
+body {
+  background-color: aliceblue;
 }

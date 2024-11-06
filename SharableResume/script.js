@@ -5,9 +5,9 @@ function downloadResume() {
     if (!resumeElement)
         return;
     var options = {
-        margin: 0,
+        margin: [0, 0, 0, 0.2],
         filename: "Resume.pdf",
-        image: { type: "jpeg", quality: 1 },
+        image: { type: "png", quality: 1 },
         html2canvas: { scale: 3, useCORS: true },
         jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
     };
@@ -15,11 +15,18 @@ function downloadResume() {
     buttons.forEach(function (button) {
         button.style.display = "none";
     });
+    resumeElement.style.width = "780px";
     resumeElement.style.border = "none";
     html2pdf()
         .from(resumeElement)
         .set(options)
-        .save();
+        .save()
+        .then(() => {
+            // After the PDF is saved, restore the buttons
+            buttons.forEach((button) => {
+              button.style.display = "inline-block";
+            });
+          });
 }
 var formDiv = document.getElementById("formdiv");
 if (formElement && resumeContainer) {
@@ -47,6 +54,7 @@ if (formElement && resumeContainer) {
         // Create and append "Share" button
         var shareButton = document.createElement("button");
         shareButton.textContent = "Share";
+        shareButton.style.marginLeft = '5px';
         resumeContainer.append(shareButton);
         // Create and append share links div
         var shareLinks = document.createElement("div");

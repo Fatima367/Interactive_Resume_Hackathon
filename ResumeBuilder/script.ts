@@ -47,6 +47,7 @@ if (formElement && resumeContainer) {
     const education = (document.getElementById("education") as HTMLTextAreaElement).value;
     const workExperience = (document.getElementById("workExperience") as HTMLTextAreaElement).value;
     const skills = (document.getElementById("skills") as HTMLTextAreaElement).value;
+    const reference = (document.getElementById("ref") as HTMLTextAreaElement).value;
 
     const educationList = education.split("\n").map((edu) => `<li>${edu}</li>`).join("");
     const workExperienceList = workExperience.split("\n").map((exp) => `<li>${exp}</li>`).join("");
@@ -69,6 +70,8 @@ if (formElement && resumeContainer) {
         <ul>${workExperienceList}</ul>
         <h2>Skills</h2>
         <ul>${skillsList}</ul>
+        <h2>References</h2>
+        <h4>${reference}</h4>
       `;
     }
 

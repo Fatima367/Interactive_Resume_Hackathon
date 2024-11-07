@@ -1,71 +1,142 @@
 #mainheading {
-    background-color: white;
-    color: rgb(7, 61, 97);
-    text-align: center;
+  background-color: white;
+  color: rgb(0, 20, 120);
+  text-align: center;
+}
+#formdiv{
+  border: 1px solid gray;
+  border-radius: 20px;
+  padding: 10px;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 1px 5px 6px;
+  background-color: rgb(248, 251, 253);  
+}
+
+h2 {
+  background-color: rgb(200, 231, 251);
+  font-size: 25px;
+  padding-left: 10px;
+}
+
+h2:hover {
+  background-color: rgb(170, 215, 255);
+}
+
+h4{
+  font-weight: normal;
+  margin-left: 20px;
+}
+
+p {
+  font-size: large;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+img {
+  height: 180px;
+  width: 180px;
+  border: none;
+  border-radius: 200px;
+  margin-left: 10px; 
+  margin-right: 20px;
+  margin-top: 8px;
+  margin-bottom: 0px;
+}
+img:hover {
+  box-shadow: 0 0 10px rgb(38, 38, 39);
+}
+#showskills:hover {
+  cursor: pointer;
+}
+
+button {
+  background-color: rgb(0, 20, 120);
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  border: none;
+  border-radius: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 5px rgb(106, 106, 106);
+  background-color: rgb(5, 76, 124);
+}
+
+#generatedresume{
+  border: 1px solid gray;
+  border-radius: 20px;
+  padding: 20px;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 1px 5px 6px;
+  background-color: #fff;
+}
+body {
+  background-color: aliceblue;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #formdiv, #generatedresume {
+      width: 90%;
+      padding: 15px;
   }
-  #formdiv{
-    border: 1px solid gray;
-    border-radius: 20px;
-    padding: 10px;
-    width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 1px 5px 6px;
-    background-color: rgb(248, 251, 253);  
-  }
+
   h2 {
-    background-color: rgb(200, 231, 251);
-    font-size: 25px;
-    padding-left: 10px;
+      font-size: 1.2rem;
   }
-  h2 :hover {
-    box-shadow: 0 0 10px rgb(38, 38, 39);
+
+  h4 {
+    font-weight: normal;
+    font-size: 0.9rem;
   }
+
   p {
-    font-size: large;
-    margin-left: 20px;
-    margin-top: 20px;
+      font-size: 0.9rem;
   }
+
   img {
-    height: 180px;
-    width: 180px;
-    border: none;
-    border-radius: 200px;
-    margin-left: 10px; 
-    margin-right: 20px;
-    margin-top: 8px;
-    margin-bottom: 0px;
+      height: 120px;
+      width: 120px;
   }
-  img:hover {
-    box-shadow: 0 0 10px rgb(38, 38, 39);
-  }
-  #showskills :hover {
-    cursor: pointer;
-  }
-  
+
   button {
-    background-color: rgb(5, 76, 124);
-    color: white;
-    font-weight: bold;
-    padding: 13px;
-    border: none;
-    border-radius: 20px;
+      padding: 10px;
+      font-size: 0.9rem;
   }
-  button:hover {
-    cursor: pointer;
-    box-shadow: 0 0 10px rgb(38, 38, 39);
+}
+
+@media (max-width: 480px) {
+  #formdiv, #generatedresume {
+      width: 100%;
+      padding: 10px;
   }
-  #generatedresume{
-    border: 1px solid gray;
-    border-radius: 20px;
-    padding: 20px;
-    width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 1px 5px 6px;
-    background-color: #fff;
+
+  h2 {
+      font-size: 1.3rem;
   }
-  body {
-    background-color: aliceblue;
+
+  h4{
+    font-size: 1rem;
+    font-weight: normal;
   }
-  
+
+  p {
+      font-size: 1rem;
+  }
+
+  img {
+      height: 120px;
+      width: 120px;
+  }
+
+  button {
+      padding: 8px;
+      font-size: 0.8rem;
+  }
+}

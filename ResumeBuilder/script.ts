@@ -52,77 +52,17 @@ if (formElement && resumeContainer) {
     const workExperienceList = workExperience.split("\n").map((exp) => `<li>${exp}</li>`).join("");
     const skillsList = skills.split("\n").map((skill) => `<li>${skill}</li>`).join("");
     
-    if (image.files && image.files[0]) {
-      const file = image.files[0];
-      const reader = new FileReader();
-
-      reader.onload = (function(e) {
-        const imageSrc = e.target?.result as string;
-
-        const generatedResume = `
-          <div style="display: flex; align-items: flex-start;">
-            <div style="flex: 1;">
-              <h2>Personal Information</h2>
-              <p><b>Name:</b> ${name}</p>
-              <p><b>Email:</b> ${email}</p>
-              <p><b>Contact No:</b> ${contact}</p>
-            </div>
-            <div style="flex-shrink: 0;">
-              <img src="${imageSrc}" alt="Profile Image" style="object-fit: cover;"/>
-            </div>
+    function generateResumeContent(imageSrc?: string) {
+      return `
+        <div style="display: flex; align-items: flex-start;">
+          <div style="flex: 1;">
+            <h2>Personal Information</h2>
+            <p><b>Name:</b> ${name}</p>
+            <p><b>Email:</b> ${email}</p>
+            <p><b>Contact No:</b> ${contact}</p>
           </div>
-          <h2>Education</h2>
-          <ul>${educationList}</ul>
-          <h2>Work Experience</h2>
-          <ul>${workExperienceList}</ul>
-          <h2>Skills</h2>
-          <ul>${skillsList}</ul>
-        `;
-
-        resumeContainer.style.display = "block";
-        resumeContainer.innerHTML = generatedResume;
-        formDiv.style.display = "none";
-
-        // Create and append "Download PDF" button
-        const createPdf = document.createElement("button");
-        createPdf.textContent = "Download PDF";
-        resumeContainer.append(createPdf);
-        createPdf.addEventListener("click", downloadResume);
-
-        // Create and append "Share" button
-        const shareButton = document.createElement("button");
-        shareButton.textContent = "Share";
-        shareButton.style.marginLeft = '5px';
-        resumeContainer.append(shareButton);
-
-        const shareLinks = document.createElement("div");
-        shareLinks.style.display = "none";
-        resumeContainer.append(shareLinks);
-
-        shareButton.addEventListener("click", function () {
-          const currentUrl = window.location.href;
-          shareLinks.style.display = shareLinks.style.display === "none" ? "block" : "none";
-          shareLinks.innerHTML = `<br>Share <a href="${currentUrl}" target="_blank"> Resume Builder</a> to let others make and download their Resume.`;
-
-          const copybtn = document.createElement("button");
-          copybtn.textContent = "Copy Link!";
-          shareLinks.appendChild(copybtn);
-          copybtn.addEventListener("click", () => {
-            navigator.clipboard.writeText(currentUrl)
-              .then(() => {
-                alert(`Link Copied to the clipboard`);
-              })
-              .catch((err) => console.error("Copy Link by right click on underlined text!", err));
-          });
-        });
-      });
-      reader.readAsDataURL(file);
-    } else {
-      const generatedResume = `
-        <h2>Personal Information</h2>
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Contact No:</b> ${contact}</p>
+          ${imageSrc ? `<div style="flex-shrink: 0;"><img src="${imageSrc}" alt="Profile Image" style="object-fit: cover;"/></div>` : ""}
+        </div>
         <h2>Education</h2>
         <ul>${educationList}</ul>
         <h2>Work Experience</h2>
@@ -130,16 +70,20 @@ if (formElement && resumeContainer) {
         <h2>Skills</h2>
         <ul>${skillsList}</ul>
       `;
+    }
 
+    const displayResume = (imageSrc?: string) => {
       resumeContainer.style.display = "block";
-      resumeContainer.innerHTML = generatedResume;
+      resumeContainer.innerHTML = generateResumeContent(imageSrc);
       formDiv.style.display = "none";
 
+      // Add Download PDF button
       const createPdf = document.createElement("button");
       createPdf.textContent = "Download PDF";
       resumeContainer.append(createPdf);
       createPdf.addEventListener("click", downloadResume);
 
+      // Add Share button
       const shareButton = document.createElement("button");
       shareButton.textContent = "Share";
       shareButton.style.marginLeft = '5px';
@@ -165,6 +109,29 @@ if (formElement && resumeContainer) {
             .catch((err) => console.error("Copy Link by right click on underlined text!", err));
         });
       });
+
+      // Add Edit Resume button
+      const editButton = document.createElement("button");
+      editButton.textContent = "Edit Resume";
+      editButton.style.marginLeft = '5px';
+      resumeContainer.append(editButton);
+
+      editButton.addEventListener("click", () => {
+        formDiv.style.display = "block";
+        resumeContainer.style.display = "none";
+      });
+    };
+
+    if (image.files && image.files[0]) {
+      const file = image.files[0];
+      const reader = new FileReader();
+      reader.onload = (function(e) {
+        const imageSrc = e.target?.result as string;
+        displayResume(imageSrc);
+      });
+      reader.readAsDataURL(file);
+    } else {
+      displayResume();
     }
   });
 } else {

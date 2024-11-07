@@ -1,5 +1,9 @@
-const formElement = document.getElementById("resumeform") as HTMLFormElement | null;
-const resumeContainer = document.getElementById("generatedresume") as HTMLElement | null;
+const formElement = document.getElementById(
+  "resumeform"
+) as HTMLFormElement | null;
+const resumeContainer = document.getElementById(
+  "generatedresume"
+) as HTMLElement | null;
 
 function downloadResume() {
   const resumeElement = document.getElementById("generatedresume");
@@ -18,7 +22,7 @@ function downloadResume() {
     button.style.display = "none";
   });
 
-  resumeElement.style.width = '780px';
+  resumeElement.style.width = "780px";
   resumeElement.style.border = "none";
 
   html2pdf()
@@ -40,19 +44,36 @@ if (formElement && resumeContainer) {
   formElement.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const image = (document.getElementById("profilepic") as HTMLInputElement);
-    const name = (document.getElementById("fullname") as HTMLInputElement).value;
+    const image = document.getElementById("profilepic") as HTMLInputElement;
+    const name = (document.getElementById("fullname") as HTMLInputElement)
+      .value;
     const email = (document.getElementById("email") as HTMLInputElement).value;
-    const contact = (document.getElementById("phone") as HTMLInputElement).value;
-    const education = (document.getElementById("education") as HTMLTextAreaElement).value;
-    const workExperience = (document.getElementById("workExperience") as HTMLTextAreaElement).value;
-    const skills = (document.getElementById("skills") as HTMLTextAreaElement).value;
-    const reference = (document.getElementById("ref") as HTMLTextAreaElement).value;
+    const contact = (document.getElementById("phone") as HTMLInputElement)
+      .value;
+    const education = (
+      document.getElementById("education") as HTMLTextAreaElement
+    ).value;
+    const workExperience = (
+      document.getElementById("workExperience") as HTMLTextAreaElement
+    ).value;
+    const skills = (document.getElementById("skills") as HTMLTextAreaElement)
+      .value;
+    const reference = (document.getElementById("ref") as HTMLTextAreaElement)
+      .value;
 
-    const educationList = education.split("\n").map((edu) => `<li>${edu}</li>`).join("");
-    const workExperienceList = workExperience.split("\n").map((exp) => `<li>${exp}</li>`).join("");
-    const skillsList = skills.split("\n").map((skill) => `<li>${skill}</li>`).join("");
-    
+    const educationList = education
+      .split("\n")
+      .map((edu) => `<li>${edu}</li>`)
+      .join("");
+    const workExperienceList = workExperience
+      .split("\n")
+      .map((exp) => `<li>${exp}</li>`)
+      .join("");
+    const skillsList = skills
+      .split("\n")
+      .map((skill) => `<li>${skill}</li>`)
+      .join("");
+
     function generateResumeContent(imageSrc?: string) {
       return `
       <div style="display: flex; align-items: flex-start;">
@@ -63,7 +84,11 @@ if (formElement && resumeContainer) {
             <p><b>Email:</b> ${email}</p>
             <p><b>Contact No:</b> ${contact}</p>
           </div>
-          ${imageSrc ? `<div style="flex-shrink: 0;"><img src="${imageSrc}" alt="Profile Image" style="object-fit: cover;"/></div>` : ""}
+          ${
+            imageSrc
+              ? `<div style="flex-shrink: 0;"><img src="${imageSrc}" alt="Profile Image" style="object-fit: cover;"/></div>`
+              : ""
+          }
         </div>
         <h2>Education</h2>
         <ul>${educationList}</ul>
@@ -74,7 +99,6 @@ if (formElement && resumeContainer) {
         <h2>References</h2>
         <h4>${reference}</h4>
 `;
-
     }
 
     const displayResume = (imageSrc?: string) => {
@@ -91,7 +115,7 @@ if (formElement && resumeContainer) {
       // Add Share button
       const shareButton = document.createElement("button");
       shareButton.textContent = "Share";
-      shareButton.style.marginLeft = '5px';
+      shareButton.style.marginLeft = "5px";
       resumeContainer.append(shareButton);
 
       const shareLinks = document.createElement("div");
@@ -100,25 +124,29 @@ if (formElement && resumeContainer) {
 
       shareButton.addEventListener("click", function () {
         const currentUrl = window.location.href;
-        shareLinks.style.display = shareLinks.style.display === "none" ? "block" : "none";
+        shareLinks.style.display =
+          shareLinks.style.display === "none" ? "block" : "none";
         shareLinks.innerHTML = `<br>Share <a href="${currentUrl}" target="_blank"> Resume Builder</a> to let others make and download their Resume.`;
 
         const copybtn = document.createElement("button");
         copybtn.textContent = "Copy Link!";
         shareLinks.appendChild(copybtn);
         copybtn.addEventListener("click", () => {
-          navigator.clipboard.writeText(currentUrl)
+          navigator.clipboard
+            .writeText(currentUrl)
             .then(() => {
               alert(`Link Copied to the clipboard`);
             })
-            .catch((err) => console.error("Copy Link by right click on underlined text!", err));
+            .catch((err) =>
+              console.error("Copy Link by right click on underlined text!", err)
+            );
         });
       });
 
       // Add Edit Resume button
       const editButton = document.createElement("button");
       editButton.textContent = "Edit Resume";
-      editButton.style.marginLeft = '5px';
+      editButton.style.marginLeft = "5px";
       resumeContainer.append(editButton);
 
       editButton.addEventListener("click", () => {
@@ -130,10 +158,10 @@ if (formElement && resumeContainer) {
     if (image.files && image.files[0]) {
       const file = image.files[0];
       const reader = new FileReader();
-      reader.onload = (function(e) {
+      reader.onload = function (e) {
         const imageSrc = e.target?.result as string;
         displayResume(imageSrc);
-      });
+      };
       reader.readAsDataURL(file);
     } else {
       displayResume();

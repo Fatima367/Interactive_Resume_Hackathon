@@ -55,8 +55,9 @@ if (formElement && resumeContainer) {
     
     function generateResumeContent(imageSrc?: string) {
       return `
-        <div style="display: flex; align-items: flex-start;">
+      <div style="display: flex; align-items: flex-start;">
           <div style="flex: 1;">
+          <h1>${name}</h1>
             <h2>Personal Information</h2>
             <p><b>Name:</b> ${name}</p>
             <p><b>Email:</b> ${email}</p>
@@ -72,7 +73,8 @@ if (formElement && resumeContainer) {
         <ul>${skillsList}</ul>
         <h2>References</h2>
         <h4>${reference}</h4>
-      `;
+`;
+
     }
 
     const displayResume = (imageSrc?: string) => {

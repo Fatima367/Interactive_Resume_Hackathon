@@ -23,7 +23,6 @@ function downloadResume() {
         .save()
         .then(function () {
         resumeElement.style.border = "1px solid gray";
-        // After the PDF is saved, restore the buttons
         buttons.forEach(function (button) {
             button.style.display = "inline-block";
         });
@@ -50,7 +49,7 @@ if (formElement && resumeContainer) {
             reader.onload = (function (e) {
                 var _a;
                 var imageSrc = (_a = e.target) === null || _a === void 0 ? void 0 : _a.result;
-                var generatedResume = "\n      <h2>Personal Information</h2>\n      <img src=\"".concat(imageSrc, "\" alt=\"Profile Image\" />      \n      <p><b>Name:</b> ").concat(name, "</p>\n      <p><b>Email:</b> ").concat(email, "</p>\n      <p><b>Contact No:</b> ").concat(contact, "</p>\n      <h2>Education</h2>\n      <ul>").concat(educationList, "</ul>\n      <h2>Work Experience</h2>\n      <ul>").concat(workExperienceList, "</ul>\n      <h2>Skills</h2>\n      <ul>").concat(skillsList, "</ul>\n    ");
+                var generatedResume = "\n          <div style=\"display: flex; align-items: flex-start;\">\n            <div style=\"flex: 1;\">\n              <h2>Personal Information</h2>\n              <p><b>Name:</b> ".concat(name, "</p>\n              <p><b>Email:</b> ").concat(email, "</p>\n              <p><b>Contact No:</b> ").concat(contact, "</p>\n            </div>\n            <div style=\"flex-shrink: 0;\">\n              <img src=\"").concat(imageSrc, "\" alt=\"Profile Image\" style=\"object-fit: cover;\"/>\n            </div>\n          </div>\n          <h2>Education</h2>\n          <ul>").concat(educationList, "</ul>\n          <h2>Work Experience</h2>\n          <ul>").concat(workExperienceList, "</ul>\n          <h2>Skills</h2>\n          <ul>").concat(skillsList, "</ul>\n        ");
                 resumeContainer.style.display = "block";
                 resumeContainer.innerHTML = generatedResume;
                 formDiv.style.display = "none";
@@ -64,7 +63,6 @@ if (formElement && resumeContainer) {
                 shareButton.textContent = "Share";
                 shareButton.style.marginLeft = '5px';
                 resumeContainer.append(shareButton);
-                // Create and append share links div
                 var shareLinks = document.createElement("div");
                 shareLinks.style.display = "none";
                 resumeContainer.append(shareLinks);
@@ -87,21 +85,18 @@ if (formElement && resumeContainer) {
             reader.readAsDataURL(file);
         }
         else {
-            var generatedResume = "\n  <h2>Personal Information</h2>\n  <p><b>Name:</b> ".concat(name, "</p>\n  <p><b>Email:</b> ").concat(email, "</p>\n  <p><b>Contact No:</b> ").concat(contact, "</p>\n  <h2>Education</h2>\n  <ul>").concat(educationList, "</ul>\n  <h2>Work Experience</h2>\n  <ul>").concat(workExperienceList, "</ul>\n  <h2>Skills</h2>\n  <ul>").concat(skillsList, "</ul>\n");
+            var generatedResume = "\n        <h2>Personal Information</h2>\n        <p><b>Name:</b> ".concat(name, "</p>\n        <p><b>Email:</b> ").concat(email, "</p>\n        <p><b>Contact No:</b> ").concat(contact, "</p>\n        <h2>Education</h2>\n        <ul>").concat(educationList, "</ul>\n        <h2>Work Experience</h2>\n        <ul>").concat(workExperienceList, "</ul>\n        <h2>Skills</h2>\n        <ul>").concat(skillsList, "</ul>\n      ");
             resumeContainer.style.display = "block";
             resumeContainer.innerHTML = generatedResume;
             formDiv.style.display = "none";
-            // Create and append "Download PDF" button
             var createPdf = document.createElement("button");
             createPdf.textContent = "Download PDF";
             resumeContainer.append(createPdf);
             createPdf.addEventListener("click", downloadResume);
-            // Create and append "Share" button
             var shareButton = document.createElement("button");
             shareButton.textContent = "Share";
             shareButton.style.marginLeft = '5px';
             resumeContainer.append(shareButton);
-            // Create and append share links div
             var shareLinks_1 = document.createElement("div");
             shareLinks_1.style.display = "none";
             resumeContainer.append(shareLinks_1);

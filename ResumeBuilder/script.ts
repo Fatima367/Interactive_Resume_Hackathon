@@ -50,6 +50,8 @@ if (formElement && resumeContainer) {
     const email = (document.getElementById("email") as HTMLInputElement).value;
     const contact = (document.getElementById("phone") as HTMLInputElement)
       .value;
+    const address = (document.getElementById("address") as HTMLInputElement)
+      .value;
     const education = (
       document.getElementById("education") as HTMLTextAreaElement
     ).value;
@@ -74,32 +76,49 @@ if (formElement && resumeContainer) {
       .map((skill) => `<li>${skill}</li>`)
       .join("");
 
-    function generateResumeContent(imageSrc?: string) {
-      return `
-      <div style="display: flex; align-items: flex-start;">
-          <div style="flex: 1;">
-          <h1>${name}</h1>
-            <h2>Personal Information</h2>
-            <p><b>Name:</b> ${name}</p>
-            <p><b>Email:</b> ${email}</p>
-            <p><b>Contact No:</b> ${contact}</p>
+      function generateResumeContent(imageSrc?: string) {
+        return `
+          <div style="display: flex; align-items: flex-start;">
+            <div style="flex: 1;">
+              <h1>${name}</h1>
+              <div style="display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  word-break: break-all;">
+                <p style="display: flex; align-items: center; color: #001478">
+                  <i class="fas fa-envelope" style="font-size: 0.8em; margin-right: 5px;"></i>
+                  <b>Email:</b> <span style="color: black;">${email}</span>
+                </p>
+                ${contact ? `
+                <p style="display: flex; align-items: center; color: #001478">
+                  <i class="fas fa-phone" style="font-size: 0.8em; margin-right: 5px;"></i>
+                  <b>Contact No:</b> <span style="color: black;">${contact}</span>
+                </p>` : ''}
+              </div>
+              ${address ? `
+              <p style="display: flex; align-items: center; color: #001478">
+                <i class="fas fa-map-marker-alt" style="font-size: 0.8em; margin-right: 5px;"></i>
+                <b>Address:</b> <span style="color: black;">${address}</span>
+              </p>` : ''}
+      
+              <h2><i class="fas fa-graduation-cap" style="font-size: 0.9em; margin-right: 2px;"></i> Education</h2>
+              <ul>${educationList}</ul>
+            </div>
+            ${
+              imageSrc
+                ? `<div style="flex-shrink: 0;"><img src="${imageSrc}" alt="Profile Image" style="object-fit: cover;"/></div>`
+                : ""
+            }
           </div>
-          ${
-            imageSrc
-              ? `<div style="flex-shrink: 0;"><img src="${imageSrc}" alt="Profile Image" style="object-fit: cover;"/></div>`
-              : ""
-          }
-        </div>
-        <h2>Education</h2>
-        <ul>${educationList}</ul>
-        <h2>Work Experience</h2>
-        <ul>${workExperienceList}</ul>
-        <h2>Skills</h2>
-        <ul>${skillsList}</ul>
-        <h2>References</h2>
-        <h4>${reference}</h4>
-`;
-    }
+      
+          <h2><i class="fas fa-briefcase" style="font-size: 0.9em; margin-right: 2px;"></i> Work Experience</h2>
+          <ul>${workExperienceList}</ul>
+          <h2><i class="fas fa-tools" style="font-size: 0.9em; margin-right: 2px;"></i> Skills</h2>
+          <ul>${skillsList}</ul>
+          <h2><i class="fas fa-address-book" style="font-size: 0.9em; margin-right: 2px;"></i> References</h2>
+          <h4>${reference}</h4>
+        `;
+      }
 
     const displayResume = (imageSrc?: string) => {
       resumeContainer.style.display = "block";
@@ -108,13 +127,13 @@ if (formElement && resumeContainer) {
 
       // Add Download PDF button
       const createPdf = document.createElement("button");
-      createPdf.textContent = "Download PDF";
+      createPdf.innerHTML = `<i class="fas fa-download"></i> Download PDF`;
       resumeContainer.append(createPdf);
       createPdf.addEventListener("click", downloadResume);
 
       // Add Share button
       const shareButton = document.createElement("button");
-      shareButton.textContent = "Share";
+      shareButton.innerHTML = `<i class="fas fa-share"></i> Share`;
       shareButton.style.marginLeft = "5px";
       resumeContainer.append(shareButton);
 
@@ -129,7 +148,7 @@ if (formElement && resumeContainer) {
         shareLinks.innerHTML = `<br>Share <a href="${currentUrl}" target="_blank"> Resume Builder</a> to let others make and download their Resume.`;
 
         const copybtn = document.createElement("button");
-        copybtn.textContent = "Copy Link!";
+        copybtn.innerHTML = `<i class="fas fa-copy"></i> Copy Link!`;
         shareLinks.appendChild(copybtn);
         copybtn.addEventListener("click", () => {
           navigator.clipboard
@@ -145,7 +164,7 @@ if (formElement && resumeContainer) {
 
       // Add Edit Resume button
       const editButton = document.createElement("button");
-      editButton.textContent = "Edit Resume";
+      editButton.innerHTML = `<i class="fas fa-edit"></i> Edit Resume`;
       editButton.style.marginLeft = "5px";
       resumeContainer.append(editButton);
 

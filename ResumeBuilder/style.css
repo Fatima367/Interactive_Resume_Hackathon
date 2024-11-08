@@ -15,29 +15,35 @@
 }
 
 h1 {
-  margin-left: 10px;
+  margin-left: 20px;
+  color: #001478;
 }
 
 h2 {
-  background-color: rgb(200, 231, 251);
+  background-color: rgb(237, 246, 251);
   font-size: 25px;
+  padding: 2px;
   padding-left: 10px;
+  color: #133e87;
 }
 
 h2:hover {
   background-color: rgb(170, 215, 255);
+  color: black;
 }
 
 h4{
   font-weight: normal;
-  margin-left: 20px;
+  margin-left: 22px;
 }
 
 p {
   font-size: large;
   margin-left: 20px;
   margin-top: 20px;
+  padding: 2px;
 }
+
 img {
   height: 180px;
   width: 180px;
@@ -56,18 +62,20 @@ img:hover {
 }
 
 button {
-  background-color: rgb(0, 20, 120);
+  border: 3px solid rgb(10, 140, 254) ;
+  background-color: #01198f;
   color: white;
   font-weight: bold;
-  padding: 12px;
-  border: none;
-  border-radius: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-left: 5px;
+  margin-bottom: 10px;
 }
 
 button:hover {
   cursor: pointer;
-  box-shadow: 0 0 5px rgb(106, 106, 106);
-  background-color: rgb(5, 76, 124);
+  box-shadow: 0 0 5px grey;
+  background-color: #010e4f;
 }
 
 #generatedresume{

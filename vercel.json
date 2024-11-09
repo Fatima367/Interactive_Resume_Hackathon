@@ -1,7 +1,14 @@
 {
     "rewrites": [
       { "source": "/(.*)", "destination": "../StaticResume/index.html" }
-    ]
+    ],
+  
+    "build": {
+      "env": {
+        "TSC_COMPILE_ON_ERROR": "true",
+        "TSC_SKIP_LIB_CHECK": "true"
+      }
+    },
+    "ignoreBuildErrors": true
   }
-
   

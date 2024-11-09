@@ -1,9 +1,17 @@
 #mainheading {
   background-color: white;
-  color: rgb(0, 20, 120);
+  color: #001478;
   text-align: center;
 }
-#formdiv{
+
+.punchline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #778fb1;
+}
+
+#formdiv {
   border: 1px solid gray;
   border-radius: 20px;
   padding: 10px;
@@ -11,7 +19,7 @@
   margin-left: auto;
   margin-right: auto;
   box-shadow: 1px 5px 6px;
-  background-color: rgb(248, 251, 253);  
+  background-color: rgb(248, 251, 253);
 }
 
 h1 {
@@ -32,9 +40,9 @@ h2:hover {
   color: black;
 }
 
-h4{
+h4 {
   font-weight: normal;
-  margin-left: 22px;
+  margin-left: 25px;
 }
 
 p {
@@ -49,7 +57,7 @@ img {
   width: 180px;
   border: none;
   border-radius: 200px;
-  margin-left: 10px; 
+  margin-left: 10px;
   margin-right: 25px;
   margin-top: 10px;
   margin-bottom: 0px;
@@ -62,7 +70,7 @@ img:hover {
 }
 
 button {
-  border: 3px solid rgb(10, 140, 254) ;
+  border: 3px solid rgb(10, 140, 254);
   background-color: #01198f;
   color: white;
   font-weight: bold;
@@ -78,7 +86,7 @@ button:hover {
   background-color: #010e4f;
 }
 
-#generatedresume{
+#generatedresume {
   border: 1px solid gray;
   border-radius: 20px;
   padding: 20px;
@@ -92,63 +100,145 @@ body {
   background-color: aliceblue;
 }
 
-/* Responsive Design */
+label {
+  font-size: large;
+  margin-left: 10px;
+}
+
+input {
+  width: 200px;
+  margin-left: 3px;
+}
+
+textarea {
+  margin-left: 10px;
+  margin-top: 2px;
+  width: 500px;
+}
+
+.myname {
+  color: #001478;
+}
+
+.end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.endtext {
+  font-size: 20px;
+}
+
+.footer {
+  color: rgb(61, 59, 59);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: -3%;
+}
+
+/* Responsive Design for Tablets */
 @media (max-width: 768px) {
-  #formdiv, #generatedresume {
-      width: 90%;
-      padding: 15px;
+  #formdiv,
+  #generatedresume {
+    width: 95%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
   }
 
   h2 {
-      font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
-  h4 {
-    font-weight: normal;
+  p,
+  h4,
+  label {
     font-size: 0.9rem;
   }
 
-  p {
-      font-size: 0.9rem;
+  img {
+    height: 150px;
+    width: 150px;
   }
 
-  img {
-      height: 120px;
-      width: 120px;
+  textarea {
+    width: auto;
   }
 
   button {
-      padding: 10px;
-      font-size: 0.9rem;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  img {
+    height: 100px;
+    width: 100px;
   }
 }
 
+.footer {
+  color: rgb(61, 59, 59);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: -3%;
+}
+
+/* Responsive Design for Mobile Phones */
 @media (max-width: 480px) {
-  #formdiv, #generatedresume {
-      width: 100%;
-      padding: 10px;
+  #formdiv,
+  #generatedresume {
+    width: 100%;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
   }
 
   h2 {
-      font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
-  h4{
-    font-size: 1rem;
-    font-weight: normal;
-  }
-
+  h4,
+  label,
   p {
-      font-size: 1rem;
+    font-size: 0.9rem;
+  }
+
+  input,
+  textarea {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  textarea {
+    height: 80px;
   }
 
   img {
-      height: 120px;
-      width: 120px;
+    height: 90px;
+    width: 90px;
   }
 
   button {
-      padding: 8px;
-      font-size: 0.8rem;
+    padding: 8px;
+    font-size: 0.8rem;
   }
+}
+
+.footer {
+  color: rgb(61, 59, 59);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: -3%;
 }

@@ -22,6 +22,10 @@ function downloadResume() {
     button.style.display = "none";
   });
 
+  const image = resumeElement.querySelector("img");
+
+  image?.style.height = "180px";
+  image?.style.width = "180px";
   resumeElement.style.width = "780px";
   resumeElement.style.border = "none";
 
@@ -76,33 +80,38 @@ if (formElement && resumeContainer) {
       .map((skill) => `<li>${skill}</li>`)
       .join("");
 
-      function generateResumeContent(imageSrc?: string) {
-        return `
+    function generateResumeContent(imageSrc?: string) {
+      return `
           <div style="display: flex; align-items: flex-start;">
             <div style="flex: 1;">
               <h1>${name}</h1>
-              <div style="display: flex;
-                  align-items: center;
-                  gap: 0.5rem;
-                  word-break: break-all;">
-                <p style="display: flex; align-items: center; color: #001478">
+              <div style="display: flex; align-items: center; gap: 0.5rem; word-break: break-all;">
+                <p style="display: flex; align-items: center; color: #001478; margin: 0; margin-left:20px;">
                   <i class="fas fa-envelope" style="font-size: 0.8em; margin-right: 5px;"></i>
-                  <b>Email:</b> <span style="color: black;">${email}</span>
+                  <b>Email: </b> <span style="color: black; padding-left: 5px">${email}</span>
                 </p>
-                ${contact ? `
-                <p style="display: flex; align-items: center; color: #001478">
+                ${
+                  contact
+                    ? `
+                <p style="display: flex; align-items: center; color: #001478; margin: 0; margin-left:20px;">
                   <i class="fas fa-phone" style="font-size: 0.8em; margin-right: 5px;"></i>
-                  <b>Contact No:</b> <span style="color: black;">${contact}</span>
-                </p>` : ''}
+                  <b>Contact No: </b> <span style="color: black; padding-left: 5px"> ${contact}</span>
+                </p>`
+                    : ""
+                }
               </div>
-              ${address ? `
-              <p style="display: flex; align-items: center; color: #001478">
+              ${
+                address
+                  ? `
+              <p style="display: flex; align-items: center; color: #001478; margin: 6px 0 0; margin-left:20px;">
                 <i class="fas fa-map-marker-alt" style="font-size: 0.8em; margin-right: 5px;"></i>
-                <b>Address:</b> <span style="color: black;">${address}</span>
-              </p>` : ''}
+                <b>Address:</b> <span style="color: black; padding-left: 5px; word-break: break-word; overflow-wrap: break-word;"> ${address}</span>
+              </p>`
+                  : ""
+              }
       
               <h2><i class="fas fa-graduation-cap" style="font-size: 0.9em; margin-right: 2px;"></i> Education</h2>
-              <ul>${educationList}</ul>
+              <ul style="word-break: break-word; overflow-wrap: break-word; font-size: medium;">${educationList}</ul>
             </div>
             ${
               imageSrc
@@ -112,13 +121,13 @@ if (formElement && resumeContainer) {
           </div>
       
           <h2><i class="fas fa-briefcase" style="font-size: 0.9em; margin-right: 2px;"></i> Work Experience</h2>
-          <ul>${workExperienceList}</ul>
+          <ul style="word-break: break-word; overflow-wrap: break-word;font-size: medium;">${workExperienceList}</ul>
           <h2><i class="fas fa-tools" style="font-size: 0.9em; margin-right: 2px;"></i> Skills</h2>
-          <ul>${skillsList}</ul>
-          <h2><i class="fas fa-address-book" style="font-size: 0.9em; margin-right: 2px;"></i> References</h2>
-          <h4>${reference}</h4>
+          <ul style="word-break: break-word; overflow-wrap: break-word; font-size: medium;">${skillsList}</ul>
+          <h2><i class="fas fa-address-book" style="font-size: 0.9em; margin-right: medium;"></i> References</h2>
+          <h4 style="word-break: break-word; overflow-wrap: break-word; font-size: medium;" >${reference}</h4>
         `;
-      }
+    }
 
     const displayResume = (imageSrc?: string) => {
       resumeContainer.style.display = "block";

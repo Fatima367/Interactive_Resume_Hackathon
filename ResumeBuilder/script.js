@@ -178,3 +178,4 @@ if (formElement && resumeContainer) {
 } else {
   console.error("Form element or resume container not found.");
 }
+<SpeedInsights />

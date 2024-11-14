@@ -1,3 +1,5 @@
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 var formElement = document.getElementById("resumeform");
 var resumeContainer = document.getElementById("generatedresume");
 function downloadResume() {

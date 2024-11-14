@@ -1,4 +1,3 @@
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 var formElement = document.getElementById("resumeform");
 var resumeContainer = document.getElementById("generatedresume");
@@ -178,4 +177,3 @@ if (formElement && resumeContainer) {
 } else {
   console.error("Form element or resume container not found.");
 }
-<SpeedInsights />

@@ -1,9 +1,5 @@
-const formElement = document.getElementById(
-  "resumeform"
-) as HTMLFormElement | null;
-const resumeContainer = document.getElementById(
-  "generatedresume"
-) as HTMLElement | null;
+let formElement = document.getElementById("resumeform");
+let resumeContainer = document.getElementById("generatedresume");
 
 if (formElement && resumeContainer) {
   resumeContainer.style.display = "none";

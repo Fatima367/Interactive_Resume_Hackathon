@@ -1,23 +1,25 @@
+let formElement = document.getElementById("resumeform");
+let resumeContainer = document.getElementById("generatedresume");
 
-var formElement = document.getElementById("resumeform");
-var resumeContainer = document.getElementById("generatedresume");
 function downloadResume() {
-  var resumeElement = document.getElementById("generatedresume");
+  let resumeElement = document.getElementById("generatedresume");
   if (!resumeElement) return;
-  var options = {
+  let options = {
     margin: [0, 0, 0, 0.2],
     filename: "Resume.pdf",
     image: { type: "png", quality: 1 },
     html2canvas: { scale: 3, useCORS: true },
     jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
   };
-  var buttons = resumeElement.querySelectorAll("button");
+  let buttons = resumeElement.querySelectorAll("button");
   buttons.forEach(function (button) {
     button.style.display = "none";
   });
-  var image = resumeElement.querySelector("img");
-  image === null || image === void 0 ? void 0 : (image.style.height = "180px");
-  image === null || image === void 0 ? void 0 : (image.style.width = "180px");
+  let image = resumeElement.querySelector("img");
+  if (image) {
+    image.style.height = "180px";
+    image.style.width = "180px";
+  }
   resumeElement.style.width = "780px";
   resumeElement.style.border = "none";
   html2pdf()
@@ -30,34 +32,34 @@ function downloadResume() {
         button.style.display = "inline-block";
       });
     });
-}
-var formDiv = document.getElementById("formdiv");
+} 
+let formDiv = document.getElementById("formdiv");
 if (formElement && resumeContainer) {
   resumeContainer.style.display = "none";
   formElement.addEventListener("submit", function (event) {
     event.preventDefault();
-    var image = document.getElementById("profilepic");
-    var name = document.getElementById("fullname").value;
-    var email = document.getElementById("email").value;
-    var contact = document.getElementById("phone").value;
-    var address = document.getElementById("address").value;
-    var education = document.getElementById("education").value;
-    var workExperience = document.getElementById("workExperience").value;
-    var skills = document.getElementById("skills").value;
-    var reference = document.getElementById("ref").value;
-    var educationList = education
+    let image = document.getElementById("profilepic");
+    let name = document.getElementById("fullname").value;
+    let email = document.getElementById("email").value;
+    let contact = document.getElementById("phone").value;
+    let address = document.getElementById("address").value;
+    let education = document.getElementById("education").value;
+    let workExperience = document.getElementById("workExperience").value;
+    let skills = document.getElementById("skills").value;
+    let reference = document.getElementById("ref").value;
+    let educationList = education
       .split("\n")
       .map(function (edu) {
         return "<li>".concat(edu, "</li>");
       })
       .join("");
-    var workExperienceList = workExperience
+    let workExperienceList = workExperience
       .split("\n")
       .map(function (exp) {
         return "<li>".concat(exp, "</li>");
       })
       .join("");
-    var skillsList = skills
+    let skillsList = skills
       .split("\n")
       .map(function (skill) {
         return "<li>".concat(skill, "</li>");
@@ -108,32 +110,32 @@ if (formElement && resumeContainer) {
         )
         .concat(reference, "</h4>\n        ");
     }
-    var displayResume = function (imageSrc) {
+    let displayResume = function (imageSrc) {
       resumeContainer.style.display = "block";
       resumeContainer.innerHTML = generateResumeContent(imageSrc);
       formDiv.style.display = "none";
       // Add Download PDF button
-      var createPdf = document.createElement("button");
+      let createPdf = document.createElement("button");
       createPdf.innerHTML = '<i class="fas fa-download"></i> Download PDF';
       resumeContainer.append(createPdf);
       createPdf.addEventListener("click", downloadResume);
       // Add Share button
-      var shareButton = document.createElement("button");
+      let shareButton = document.createElement("button");
       shareButton.innerHTML = '<i class="fas fa-share"></i> Share';
       shareButton.style.marginLeft = "5px";
       resumeContainer.append(shareButton);
-      var shareLinks = document.createElement("div");
+      let shareLinks = document.createElement("div");
       shareLinks.style.display = "none";
       resumeContainer.append(shareLinks);
       shareButton.addEventListener("click", function () {
-        var currentUrl = window.location.href;
+        let currentUrl = window.location.href;
         shareLinks.style.display =
           shareLinks.style.display === "none" ? "block" : "none";
         shareLinks.innerHTML = '<br>Share <a href="'.concat(
           currentUrl,
           '" target="_blank"> Resume Builder</a> to let others make and download their Resume.'
         );
-        var copybtn = document.createElement("button");
+        let copybtn = document.createElement("button");
         copybtn.innerHTML = '<i class="fas fa-copy"></i> Copy Link!';
         shareLinks.appendChild(copybtn);
         copybtn.addEventListener("click", function () {
@@ -151,22 +153,20 @@ if (formElement && resumeContainer) {
         });
       });
       // Add Edit Resume button
-      var editButton = document.createElement("button");
+      let editButton = document.createElement("button");
       editButton.innerHTML = '<i class="fas fa-edit"></i> Edit Resume';
       editButton.style.marginLeft = "5px";
       resumeContainer.append(editButton);
-      editButton.addEventListener("click", function () {
+      editButton.addEventListener("click", function () {  
         formDiv.style.display = "block";
         resumeContainer.style.display = "none";
       });
     };
-    if (image.files && image.files[0]) {
-      var file = image.files[0];
-      var reader = new FileReader();
+    if (image.files?.[0]) {
+      let file = image.files[0];
+      let reader = new FileReader();
       reader.onload = function (e) {
-        var _a;
-        var imageSrc =
-          (_a = e.target) === null || _a === void 0 ? void 0 : _a.result;
+        let imageSrc = e.target?.result;
         displayResume(imageSrc);
       };
       reader.readAsDataURL(file);

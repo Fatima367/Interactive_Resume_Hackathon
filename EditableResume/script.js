@@ -1,34 +1,34 @@
-var formElement = document.getElementById("resumeform");
-var resumeContainer = document.getElementById("generatedresume");
+let formElement = document.getElementById("resumeform");
+let resumeContainer = document.getElementById("generatedresume");
 if (formElement && resumeContainer) {
   resumeContainer.style.display = "none";
   formElement.addEventListener("submit", function (event) {
     event.preventDefault();
-    var name = document.getElementById("fullname").value;
-    var email = document.getElementById("email").value;
-    var contact = document.getElementById("phone").value;
-    var education = document.getElementById("education").value;
-    var workExperience = document.getElementById("workExperience").value;
-    var skills = document.getElementById("skills").value;
-    var educationList = education
+    let name = document.getElementById("fullname").value;
+    let email = document.getElementById("email").value;
+    let contact = document.getElementById("phone").value;
+    let education = document.getElementById("education").value;
+    let workExperience = document.getElementById("workExperience").value;
+    let skills = document.getElementById("skills").value;
+    let educationList = education
       .split("\n")
       .map(function (edu) {
         return "<li>".concat(edu, "</li>");
       })
       .join("");
-    var workExperienceList = workExperience
+    let workExperienceList = workExperience
       .split("\n")
       .map(function (exp) {
         return "<li>".concat(exp, "</li>");
       })
       .join("");
-    var skillsList = skills
+    let skillsList = skills
       .split("\n")
       .map(function (skill) {
         return "<li>".concat(skill, "</li>");
       })
       .join("");
-    var generatedResume = "\n      <h1>"
+    let generatedResume = "\n      <h1>"
       .concat(
         name,
         "'s Resume</h1>\n      \n      <h2>Personal Information</h2>\n      <p><b>Name:</b> "
@@ -44,24 +44,24 @@ if (formElement && resumeContainer) {
       .concat(skillsList, "</ul>\n    ");
     resumeContainer.style.display = "block";
     resumeContainer.innerHTML = generatedResume;
-    var generatebtn = document.querySelector("button");
+    let generatebtn = document.querySelector("button");
     generatebtn.addEventListener("click", function () {
       formElement.style.display = "none";
     });
-    var editbtn = document.createElement("button");
+    let editbtn = document.createElement("button");
     editbtn.textContent = "Edit Resume";
     resumeContainer.appendChild(editbtn);
     editbtn.addEventListener("click", function () {
       generatebtn.style.display = "none";
       resumeContainer.style.display = "none";
       formElement.style.display = "block";
-      var updatebtn = document.createElement("button");
+      let updatebtn = document.createElement("button");
       updatebtn.textContent = "Update Resume ";
       formElement.appendChild(updatebtn);
       updatebtn.addEventListener("Update Resume", function (event) {
         generatebtn.style.display = "none";
         event.preventDefault();
-        var updateResume = "\n            <h1>"
+        let updateResume = "\n            <h1>"
           .concat(
             name,
             "'s Resume</h1>\n            \n            <h2>Personal Information</h2>\n            <p><b>Name:</b> "

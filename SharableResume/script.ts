@@ -1,5 +1,5 @@
-const formElement = document.getElementById("resumeform") as HTMLFormElement | null;
-const resumeContainer = document.getElementById("generatedresume") as HTMLElement | null;
+const formElement = document.getElementById("resumeform");
+const resumeContainer = document.getElementById("generatedresume");
 
 function downloadResume() {
   const resumeElement = document.getElementById("generatedresume");
@@ -34,7 +34,7 @@ function downloadResume() {
 
 }
 
-const formDiv = document.getElementById("formdiv") as HTMLElement | null;
+const formDiv = document.getElementById("formdiv");
 
 if (formElement && resumeContainer) {
   resumeContainer.style.display = "none";

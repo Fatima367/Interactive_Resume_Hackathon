@@ -1,9 +1,9 @@
 const formElement = document.getElementById(
   "resumeform"
-) as HTMLFormElement | null;
+);
 const resumeContainer = document.getElementById(
   "generatedresume"
-) as HTMLElement | null;
+);
 
 function downloadResume() {
   const resumeElement = document.getElementById("generatedresume");
@@ -41,7 +41,7 @@ function downloadResume() {
     });
 }
 
-const formDiv = document.getElementById("formdiv") as HTMLElement | null;
+const formDiv = document.getElementById("formdiv");
 
 if (formElement && resumeContainer) {
   resumeContainer.style.display = "none";
@@ -183,7 +183,7 @@ if (formElement && resumeContainer) {
       });
     };
 
-    if (image.files && image.files[0]) {
+    if (image.files?.[0]) {
       const file = image.files[0];
       const reader = new FileReader();
       reader.onload = function (e) {

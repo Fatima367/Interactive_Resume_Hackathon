@@ -89,8 +89,6 @@ function handleShareButtonClick(shareButton, shareLinks) {
         const copybtn = document.createElement("button");
         copybtn.innerHTML = `<i class="fas fa-copy"></i> Copy Link!`;
         shareLinks.appendChild(copybtn);
-        // FIX: Pass the currentUrl to a top-level function instead of nesting the logic
-        // Nesting depth reduced here
         copybtn.addEventListener("click", () => {
             handleCopyLink(currentUrl);
         });

@@ -1,3 +1,4 @@
+"use strict";
 let showskills = document.getElementById("showskills");
 if (showskills) {
     let skillslist = [
@@ -12,30 +13,30 @@ if (showskills) {
         "Canva",
         "MsWord",
     ];
-    let ul_1 = document.createElement("ul");
+    const ul = document.createElement("ul");
     skillslist.forEach(function (skill) {
-        let li = document.createElement("li");
+        const li = document.createElement("li");
         li.textContent = skill;
-        ul_1.appendChild(li);
+        ul.appendChild(li);
     });
-    ul_1.style.display = "none";
-    showskills.appendChild(ul_1);
-    let showBtn_1 = document.createElement("button");
-    showBtn_1.textContent = "Show Skills";
-    showskills.appendChild(showBtn_1);
-    let hideBtn_1 = document.createElement("button");
-    hideBtn_1.textContent = "Hide Skills";
-    hideBtn_1.style.display = "none";
-    showskills.appendChild(hideBtn_1);
-    showBtn_1.addEventListener("click", function () {
-        ul_1.style.display = "block";
-        showBtn_1.style.display = "none";
-        hideBtn_1.style.display = "inline";
+    ul.style.display = "none";
+    showskills.appendChild(ul);
+    const showBtn = document.createElement("button");
+    showBtn.textContent = "Show Skills";
+    showskills.appendChild(showBtn);
+    const hideBtn = document.createElement("button");
+    hideBtn.textContent = "Hide Skills";
+    hideBtn.style.display = "none";
+    showskills.appendChild(hideBtn);
+    showBtn.addEventListener("click", function () {
+        ul.style.display = "block";
+        showBtn.style.display = "none";
+        hideBtn.style.display = "inline";
     });
-    hideBtn_1.addEventListener("click", function () {
-        ul_1.style.display = "none";
-        hideBtn_1.style.display = "none";
-        showBtn_1.style.display = "inline";
+    hideBtn.addEventListener("click", function () {
+        ul.style.display = "none";
+        hideBtn.style.display = "none";
+        showBtn.style.display = "inline";
     });
 }
 else {

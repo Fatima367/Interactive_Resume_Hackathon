@@ -1,32 +1,49 @@
-let formElement = document.getElementById("resumeform");
-let resumeContainer = document.getElementById("generatedresume");
-let formDiv = document.getElementById("formdiv");
+"use strict";
+const formElement = document.getElementById("resumeform");
+const resumeContainer = document.getElementById("generatedresume");
+const formDiv = document.getElementById("formdiv");
 if (formElement && resumeContainer) {
     resumeContainer.style.display = "none";
-    formElement.addEventListener("submit", function (event) {
+    formElement.addEventListener("submit", (event) => {
         event.preventDefault();
-        let name = document.getElementById("fullname")
+        const name = document.getElementById("fullname")
             .value;
-        let email = document.getElementById("email").value;
-        let contact = document.getElementById("phone")
+        const email = document.getElementById("email").value;
+        const contact = document.getElementById("phone")
             .value;
-        let education = document.getElementById("education").value;
-        let workExperience = document.getElementById("workExperience").value;
-        let skills = document.getElementById("skills")
+        const education = document.getElementById("education").value;
+        const workExperience = document.getElementById("workExperience").value;
+        const skills = document.getElementById("skills")
             .value;
-        let educationList = education
+        const educationList = education
             .split("\n")
-            .map(function (edu) { return "<li>".concat(edu, "</li>"); })
+            .map((edu) => `<li>${edu}</li>`)
             .join("");
-        let workExperienceList = workExperience
+        const workExperienceList = workExperience
             .split("\n")
-            .map(function (exp) { return "<li>".concat(exp, "</li>"); })
+            .map((exp) => `<li>${exp}</li>`)
             .join("");
-        let skillsList = skills
+        const skillsList = skills
             .split("\n")
-            .map(function (skill) { return "<li>".concat(skill, "</li>"); })
+            .map((skill) => `<li>${skill}</li>`)
             .join("");
-        let generatedResume = "\n      <h1>".concat(name, "'s Resume</h1>\n      \n      <h2>Personal Information</h2>\n      <p><b>Name:</b> ").concat(name, "</p>\n      <p><b>Email:</b> ").concat(email, "</p>\n      <p><b>Contact No:</b> ").concat(contact, "</p>\n\n      <h2>Education</h2>\n      <ul>").concat(educationList, "</ul>\n\n      <h2>Work Experience</h2>\n      <ul>").concat(workExperienceList, "</ul>\n\n      <h2>Skills</h2>\n      <ul>").concat(skillsList, "</ul>\n    ");
+        const generatedResume = `
+      <h1>${name}'s Resume</h1>
+      
+      <h2>Personal Information</h2>
+      <p><b>Name:</b> ${name}</p>
+      <p><b>Email:</b> ${email}</p>
+      <p><b>Contact No:</b> ${contact}</p>
+
+      <h2>Education</h2>
+      <ul>${educationList}</ul>
+
+      <h2>Work Experience</h2>
+      <ul>${workExperienceList}</ul>
+
+      <h2>Skills</h2>
+      <ul>${skillsList}</ul>
+    `;
         resumeContainer.style.display = "block";
         resumeContainer.innerHTML = generatedResume;
         formDiv.style.display = "none";

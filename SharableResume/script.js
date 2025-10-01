@@ -1,78 +1,91 @@
-let formElement = document.getElementById("resumeform");
-let resumeContainer = document.getElementById("generatedresume");
+"use strict";
+const formElement = document.getElementById("resumeform");
+const resumeContainer = document.getElementById("generatedresume");
 function downloadResume() {
-    let resumeElement = document.getElementById("generatedresume");
+    const resumeElement = document.getElementById("generatedresume");
     if (!resumeElement)
         return;
-    let options = {
+    const options = {
         margin: [0, 0, 0, 0.2],
         filename: "Resume.pdf",
         image: { type: "png", quality: 1 },
         html2canvas: { scale: 3, useCORS: true },
         jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
     };
-    let buttons = resumeElement.querySelectorAll("button");
-    buttons.forEach(function (button) {
+    const buttons = resumeElement.querySelectorAll("button");
+    buttons.forEach((button) => {
         button.style.display = "none";
     });
-    resumeElement.style.width = "780px";
+    resumeElement.style.width = '780px';
     resumeElement.style.border = "none";
     html2pdf()
         .from(resumeElement)
         .set(options)
         .save()
         .then(() => {
-            // After the PDF is saved, restore the buttons
-            buttons.forEach((button) => {
-              button.style.display = "inline-block";
-            });
-          });
+        // After the PDF is saved, restore the buttons
+        buttons.forEach((button) => {
+            button.style.display = "block";
+        });
+    });
 }
-let formDiv = document.getElementById("formdiv");
+const formDiv = document.getElementById("formdiv");
 if (formElement && resumeContainer) {
     resumeContainer.style.display = "none";
-    formElement.addEventListener("submit", function (event) {
+    formElement.addEventListener("submit", (event) => {
         event.preventDefault();
-        let name = document.getElementById("fullname").value;
-        let email = document.getElementById("email").value;
-        let contact = document.getElementById("phone").value;
-        let education = document.getElementById("education").value;
-        let workExperience = document.getElementById("workExperience").value;
-        let skills = document.getElementById("skills").value;
-        let educationList = education.split("\n").map(function (edu) { return "<li>".concat(edu, "</li>"); }).join("");
-        let workExperienceList = workExperience.split("\n").map(function (exp) { return "<li>".concat(exp, "</li>"); }).join("");
-        let skillsList = skills.split("\n").map(function (skill) { return "<li>".concat(skill, "</li>"); }).join("");
-        let generatedResume = "\n      <h1>".concat(name, "'s Resume</h1>\n      <h2>Personal Information</h2>\n      <p><b>Name:</b> ").concat(name, "</p>\n      <p><b>Email:</b> ").concat(email, "</p>\n      <p><b>Contact No:</b> ").concat(contact, "</p>\n      <h2>Education</h2>\n      <ul>").concat(educationList, "</ul>\n      <h2>Work Experience</h2>\n      <ul>").concat(workExperienceList, "</ul>\n      <h2>Skills</h2>\n      <ul>").concat(skillsList, "</ul>\n    ");
+        const name = document.getElementById("fullname").value;
+        const email = document.getElementById("email").value;
+        const contact = document.getElementById("phone").value;
+        const education = document.getElementById("education").value;
+        const workExperience = document.getElementById("workExperience").value;
+        const skills = document.getElementById("skills").value;
+        const educationList = education.split("\n").map((edu) => `<li>${edu}</li>`).join("");
+        const workExperienceList = workExperience.split("\n").map((exp) => `<li>${exp}</li>`).join("");
+        const skillsList = skills.split("\n").map((skill) => `<li>${skill}</li>`).join("");
+        const generatedResume = `
+      <h1>${name}'s Resume</h1>
+      <h2>Personal Information</h2>
+      <p><b>Name:</b> ${name}</p>
+      <p><b>Email:</b> ${email}</p>
+      <p><b>Contact No:</b> ${contact}</p>
+      <h2>Education</h2>
+      <ul>${educationList}</ul>
+      <h2>Work Experience</h2>
+      <ul>${workExperienceList}</ul>
+      <h2>Skills</h2>
+      <ul>${skillsList}</ul>
+    `;
         resumeContainer.style.display = "block";
         resumeContainer.innerHTML = generatedResume;
         formDiv.style.display = "none";
         // Create and append "Download PDF" button
-        let createPdf = document.createElement("button");
+        const createPdf = document.createElement("button");
         createPdf.textContent = "Download PDF";
         resumeContainer.append(createPdf);
         createPdf.addEventListener("click", downloadResume);
         // Create and append "Share" button
-        let shareButton = document.createElement("button");
+        const shareButton = document.createElement("button");
         shareButton.textContent = "Share";
         shareButton.style.marginLeft = '5px';
         resumeContainer.append(shareButton);
         // Create and append share links div
-        let shareLinks = document.createElement("div");
+        const shareLinks = document.createElement("div");
         shareLinks.style.display = "none";
         resumeContainer.append(shareLinks);
         shareButton.addEventListener("click", function () {
-            let currentUrl = window.location.href;
+            const currentUrl = window.location.href;
             shareLinks.style.display = shareLinks.style.display === "none" ? "block" : "none";
-            shareLinks.innerHTML = "<br>Share <a href=\"".concat(currentUrl, "\" target=\"_blank\"> Resume Builder</a> to let others make and download their Resume.");
-            let copybtn = document.createElement("button");
+            shareLinks.innerHTML = `<br>Share <a href="${currentUrl}" target="_blank"> Resume Builder</a> to let others make and download their Resume.`;
+            const copybtn = document.createElement("button");
             copybtn.textContent = "Copy Link!";
             shareLinks.appendChild(copybtn);
-            copybtn.addEventListener("click", function () {
+            copybtn.addEventListener("click", () => {
                 navigator.clipboard.writeText(currentUrl)
-                    .then(function () {
-                    alert("Link Copied to the clipboard");
+                    .then(() => {
+                    alert(`Link Copied to the clipboard`);
                 })
-                    .catch(function (err) { return console.error("Copy Link by right click on underlined text!", err); });
+                    .catch((err) => console.error("Copy Link by right click on underlined text!", err));
             });
         });
     });

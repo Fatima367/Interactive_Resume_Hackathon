@@ -178,15 +178,6 @@ textarea {
   }
 }
 
-.footer {
-  color: rgb(61, 59, 59);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  margin-top: -3%;
-}
-
 /* Responsive Design for Mobile Phones */
 @media (max-width: 480px) {
   #formdiv,
@@ -236,5 +227,5 @@ textarea {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  margin-top: -3%;
+  margin-top: -2.5%;
 }

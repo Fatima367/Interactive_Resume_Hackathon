@@ -6,6 +6,18 @@ const resumeContainer = document.getElementById(
 );
 const formDiv = document.getElementById("formdiv");
 
+// Extracted function to handle the copy link logic
+function handleCopyLink(currentUrl: string) {
+  navigator.clipboard
+    .writeText(currentUrl)
+    .then(() => {
+      alert(`Link Copied to the clipboard`);
+    })
+    .catch((err) =>
+      console.error("Copy Link by right click on underlined text!", err)
+    );
+}
+
 // Utility function to get form field values
 function getFormValues() {
   const image = document.getElementById("profilepic") as HTMLInputElement;
@@ -99,15 +111,11 @@ function handleShareButtonClick(shareButton: HTMLButtonElement, shareLinks: HTML
     const copybtn = document.createElement("button");
     copybtn.innerHTML = `<i class="fas fa-copy"></i> Copy Link!`;
     shareLinks.appendChild(copybtn);
+
+    // FIX: Pass the currentUrl to a top-level function instead of nesting the logic
+    // Nesting depth reduced here
     copybtn.addEventListener("click", () => {
-      navigator.clipboard
-        .writeText(currentUrl)
-        .then(() => {
-          alert(`Link Copied to the clipboard`);
-        })
-        .catch((err) =>
-          console.error("Copy Link by right click on underlined text!", err)
-        );
+      handleCopyLink(currentUrl);
     });
   });
 }

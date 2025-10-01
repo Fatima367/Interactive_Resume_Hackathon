@@ -1,10 +1,6 @@
-const formElement = document.getElementById(
-  "resumeform"
-) as HTMLFormElement | null;
-const resumeContainer = document.getElementById(
-  "generatedresume"
-) as HTMLElement | null;
-const formDiv = document.getElementById("formdiv") as HTMLElement | null;
+const formElement = document.getElementById("resumeform");
+const resumeContainer = document.getElementById("generatedresume");
+const formDiv = document.getElementById("formdiv");
 
 if (formElement && resumeContainer) {
   resumeContainer.style.display = "none";
@@ -60,7 +56,6 @@ if (formElement && resumeContainer) {
     resumeContainer.style.display = "block";
     resumeContainer.innerHTML = generatedResume;
     formDiv.style.display = "none";
-
   });
 } else {
   console.error("Form element or resume container not found.");

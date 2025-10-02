@@ -1,9 +1,5 @@
-const formElement = document.getElementById(
-  "resumeform"
-);
-const resumeContainer = document.getElementById(
-  "generatedresume"
-);
+const formElement = document.getElementById("resumeform");
+const resumeContainer = document.getElementById("generatedresume");
 const formDiv = document.getElementById("formdiv");
 
 // Extracted function to handle the copy link logic
@@ -24,21 +20,37 @@ function getFormValues() {
   const name = (document.getElementById("fullname") as HTMLInputElement).value;
   const email = (document.getElementById("email") as HTMLInputElement).value;
   const contact = (document.getElementById("phone") as HTMLInputElement).value;
-  const address = (document.getElementById("address") as HTMLInputElement).value;
+  const address = (document.getElementById("address") as HTMLInputElement)
+    .value;
   const education = (
     document.getElementById("education") as HTMLTextAreaElement
   ).value;
   const workExperience = (
     document.getElementById("workExperience") as HTMLTextAreaElement
   ).value;
-  const skills = (document.getElementById("skills") as HTMLTextAreaElement).value;
-  const reference = (document.getElementById("ref") as HTMLTextAreaElement).value;
+  const skills = (document.getElementById("skills") as HTMLTextAreaElement)
+    .value;
+  const reference = (document.getElementById("ref") as HTMLTextAreaElement)
+    .value;
 
-  return { image, name, email, contact, address, education, workExperience, skills, reference };
+  return {
+    image,
+    name,
+    email,
+    contact,
+    address,
+    education,
+    workExperience,
+    skills,
+    reference,
+  };
 }
 
 // Function to generate the HTML content for the resume
-function generateResumeContent(data: ReturnType<typeof getFormValues>, imageSrc?: string) {
+function generateResumeContent(
+  data: ReturnType<typeof getFormValues>,
+  imageSrc?: string
+) {
   const educationList = data.education
     .split("\n")
     .map((edu) => `<li>${edu}</li>`)
@@ -59,7 +71,9 @@ function generateResumeContent(data: ReturnType<typeof getFormValues>, imageSrc?
         <div style="display: flex; align-items: center; gap: 0.5rem; word-break: break-all;">
           <p style="display: flex; align-items: center; color: #001478; margin: 0; margin-left:20px;">
             <i class="fas fa-envelope" style="font-size: 0.8em; margin-right: 5px;"></i>
-            <b>Email: </b> <span style="color: black; padding-left: 5px">${data.email}</span>
+            <b>Email: </b> <span style="color: black; padding-left: 5px">${
+              data.email
+            }</span>
           </p>
           ${
             data.contact
@@ -96,12 +110,17 @@ function generateResumeContent(data: ReturnType<typeof getFormValues>, imageSrc?
     <h2><i class="fas fa-tools" style="font-size: 0.9em; margin-right: 2px;"></i> Skills</h2>
     <ul style="word-break: break-word; overflow-wrap: break-word; font-size: medium;">${skillsList}</ul>
     <h2><i class="fas fa-address-book" style="font-size: 0.9em; margin-right: medium;"></i> References</h2>
-    <h4 style="word-break: break-word; overflow-wrap: break-word; font-size: medium;" >${data.reference}</h4>
+    <h4 style="word-break: break-word; overflow-wrap: break-word; font-size: medium;" >${
+      data.reference
+    }</h4>
   `;
 }
 
 // Function to handle the "Share" button click logic
-function handleShareButtonClick(shareButton: HTMLButtonElement, shareLinks: HTMLDivElement) {
+function handleShareButtonClick(
+  shareButton: HTMLButtonElement,
+  shareLinks: HTMLDivElement
+) {
   shareButton.addEventListener("click", function () {
     const currentUrl = window.location.href;
     shareLinks.style.display =
@@ -119,7 +138,12 @@ function handleShareButtonClick(shareButton: HTMLButtonElement, shareLinks: HTML
 }
 
 // Function to display the generated resume
-function displayResume(resumeContainer: HTMLElement, formDiv: HTMLElement, resumeData: ReturnType<typeof getFormValues>, imageSrc?: string) {
+function displayResume(
+  resumeContainer: HTMLElement,
+  formDiv: HTMLElement,
+  resumeData: ReturnType<typeof getFormValues>,
+  imageSrc?: string
+) {
   resumeContainer.style.display = "block";
   resumeContainer.innerHTML = generateResumeContent(resumeData, imageSrc);
   formDiv.style.display = "none";
@@ -173,8 +197,11 @@ function downloadResume() {
 
   const image = resumeElement.querySelector("img");
 
-  image?.style.height = "180px";
-  image?.style.width = "180px";
+  if (image) {
+    image.style.height = "180px";
+    image.style.width = "180px";
+  }
+
   resumeElement.style.width = "780px";
   resumeElement.style.border = "none";
 

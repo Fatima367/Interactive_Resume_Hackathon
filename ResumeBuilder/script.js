@@ -17,12 +17,25 @@ function getFormValues() {
     const name = document.getElementById("fullname").value;
     const email = document.getElementById("email").value;
     const contact = document.getElementById("phone").value;
-    const address = document.getElementById("address").value;
+    const address = document.getElementById("address")
+        .value;
     const education = document.getElementById("education").value;
     const workExperience = document.getElementById("workExperience").value;
-    const skills = document.getElementById("skills").value;
-    const reference = document.getElementById("ref").value;
-    return { image, name, email, contact, address, education, workExperience, skills, reference };
+    const skills = document.getElementById("skills")
+        .value;
+    const reference = document.getElementById("ref")
+        .value;
+    return {
+        image,
+        name,
+        email,
+        contact,
+        address,
+        education,
+        workExperience,
+        skills,
+        reference,
+    };
 }
 // Function to generate the HTML content for the resume
 function generateResumeContent(data, imageSrc) {
@@ -139,8 +152,10 @@ function downloadResume() {
         button.style.display = "none";
     });
     const image = resumeElement.querySelector("img");
-    image === null || image === void 0 ? void 0 : image.style.height = "180px";
-    image === null || image === void 0 ? void 0 : image.style.width = "180px";
+    if (image) {
+        image.style.height = "180px";
+        image.style.width = "180px";
+    }
     resumeElement.style.width = "780px";
     resumeElement.style.border = "none";
     html2pdf()

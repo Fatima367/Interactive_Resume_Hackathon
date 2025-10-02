@@ -156,7 +156,7 @@ function downloadResume() {
 }
 // Event listener for form submission
 function handleFormSubmit(event) {
-    var _a;
+    let _a;
     event.preventDefault();
     if (!resumeContainer || !formDiv)
         return;
@@ -165,7 +165,7 @@ function handleFormSubmit(event) {
         const file = data.image.files[0];
         const reader = new FileReader();
         reader.onload = function (e) {
-            var _a;
+            let _a;
             const imageSrc = (_a = e.target) === null || _a === void 0 ? void 0 : _a.result;
             displayResume(resumeContainer, formDiv, data, imageSrc);
         };
